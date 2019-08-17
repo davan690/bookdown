@@ -6,12 +6,15 @@
 \alias{pdf_document2}
 \alias{tufte_handout2}
 \alias{tufte_book2}
+\alias{markdown_document2}
 \alias{word_document2}
+\alias{odt_document2}
+\alias{powerpoint_presentation2}
 \title{Output formats that allow numbering and cross-referencing
 figures/tables/equations}
 \usage{
-html_document2(..., number_sections = TRUE, pandoc_args = NULL, 
-    base_format = rmarkdown::html_document, clean_highlight_tags = TRUE)
+html_document2(..., number_sections = TRUE, pandoc_args = NULL,
+  base_format = rmarkdown::html_document)
 
 tufte_html2(..., number_sections = FALSE)
 
@@ -21,8 +24,14 @@ tufte_handout2(...)
 
 tufte_book2(...)
 
-word_document2(fig_caption = TRUE, md_extensions = NULL, pandoc_args = NULL, 
-    ...)
+markdown_document2(fig_caption = TRUE, md_extensions = NULL,
+  pandoc_args = NULL, ..., base_format)
+
+word_document2(...)
+
+odt_document2(...)
+
+powerpoint_presentation2(...)
 }
 \arguments{
 \item{..., fig_caption, md_extensions, pandoc_args}{Arguments to be passed to a
@@ -38,9 +47,6 @@ sequentially in the document from 1, 2, ..., and you cannot cross-reference
 section headers in this case.}
 
 \item{base_format}{An output format function to be used as the base format.}
-
-\item{clean_highlight_tags}{Whether to remove the \verb{<div>} tags around
-\verb{<pre>}, and clean up \verb{<a>} on all lines in code blocks.}
 }
 \value{
 An R Markdown output format object to be passed to
@@ -51,7 +57,9 @@ These are simple wrappers of the output format functions like
 \code{rmarkdown::\link{html_document}()}, and they added the capability of
 numbering figures/tables/equations/theorems and cross-referencing them. See
 References for the syntax. Note you can also cross-reference sections by
-their ID's using the same syntax when sections are numbered.
+their ID's using the same syntax when sections are numbered. In case you want
+to enable cross reference in other formats, use \code{markdown_document2} with
+\code{base_format} argument.
 }
 \note{
 These function are expected to work with a single R Markdown document
